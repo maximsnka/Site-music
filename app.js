@@ -89,13 +89,14 @@ function save() {
 
 // ─── Tab navigation ───
 function openTab(name) {
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.nav-btn, .bottom-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   document.querySelectorAll('.tab-section').forEach(s => s.classList.toggle('active', s.id === 'tab-' + name));
   document.getElementById('hero').style.display = name === 'dashboard' ? '' : 'none';
   if (name === 'envoyer') populateSendSelect();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.querySelectorAll('.nav-btn').forEach(btn => {
+document.querySelectorAll('.nav-btn, .bottom-nav-btn').forEach(btn => {
   btn.addEventListener('click', () => openTab(btn.dataset.tab));
 });
 
