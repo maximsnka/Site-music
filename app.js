@@ -4,7 +4,7 @@ let sentCount = parseInt(localStorage.getItem('cv_sent') || '0', 10);
 
 const PLANS = { equilibre: '🥗 Programme Équilibre', performance: '💪 Programme Performance', detox: '🌿 Programme Détox', perte_poids: '🏃 Programme Perte de Poids' };
 const TIPS = {
-  sommeil:     { title: 'Le sommeil, pilier de la performance', text: '7 à 9 heures de sommeil par nuit favorisent la récupération musculaire, réduisent le cortisol et améliorent la concentration. Chambre fraîche à 18°C, pas d\'écran 1h avant.' },
+  sommeil:     { title: 'Le sommeil, pilier de la performance', text: '7 à 9 heures de sommeil par nuit favorisent la récupération musculaire. Chambre fraîche à 18°C, pas d\''écran 1h avant.' },
   hydratation: { title: 'L\'eau, votre meilleure alliée', text: 'Une déshydratation de 2% réduit les performances de 20%. Buvez 250ml dès le réveil. Avant l\'effort : 500ml, pendant : 150ml toutes les 20 min.' },
   mental:      { title: 'La pleine conscience au quotidien', text: '5 minutes de méditation par jour. Respirez 4-7-8 : inspirez 4s, retenez 7s, expirez 8s.' },
   marche:      { title: 'Marchez, tout simplement', text: '8 000 à 10 000 pas par jour améliorent la santé cardiovasculaire. La régularité prime sur l\'intensité.' },
@@ -22,12 +22,13 @@ const OBJECTIF_LABELS = { perte_poids: 'Perte de poids', prise_masse: 'Prise de 
 function save() { localStorage.setItem('cv_members', JSON.stringify(members)); localStorage.setItem('cv_history', JSON.stringify(history)); localStorage.setItem('cv_sent', String(sentCount)); }
 
 function openTab(name) {
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.nav-btn, .bottom-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   document.querySelectorAll('.tab-section').forEach(s => s.classList.toggle('active', s.id === 'tab-' + name));
   document.getElementById('hero').style.display = name === 'dashboard' ? '' : 'none';
   if (name === 'envoyer') populateSendSelect();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-document.querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.tab)));
+document.querySelectorAll('.nav-btn, .bottom-nav-btn').forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.tab)));
 
 function initials(m) { return (m.prenom[0] + m.nom[0]).toUpperCase(); }
 
