@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoachVital — Votre Coach Bien-être</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">CoachVital</span>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="dashboard">Tableau de bord</button>
+        <button class="nav-btn" data-tab="members">Adhérents</button>
+        <button class="nav-btn" data-tab="nutrition">Nutrition</button>
+        <button class="nav-btn" data-tab="conseils">Conseils</button>
+        <button class="nav-btn" data-tab="envoyer">Envoyer</button>
+      </nav>
+      <div class="header-coach">
+        <div class="coach-avatar">SC</div>
+        <span class="coach-name">Sarah Coach</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Bienvenue, Sarah</p>
+      <h1 class="hero-title">Accompagnez vos adhérents<br />vers leur meilleur soi.</h1>
+      <p class="hero-sub">Partagez des programmes nutrition personnalisés, des conseils bien-être et suivez la progression de chaque membre en un seul endroit.</p>
+      <div class="hero-stats">
+        <div class="stat-pill" id="stat-members"><span class="stat-num">0</span><span class="stat-label">Adhérents</span></div>
+        <div class="stat-pill"><span class="stat-num" id="stat-sent">0</span><span class="stat-label">Messages envoyés</span></div>
+        <div class="stat-pill"><span class="stat-num">12</span><span class="stat-label">Conseils disponibles</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-card fc1"><span class="fc-icon">🥗</span><div><strong>Plan Nutrition</strong><p>Envoyé à 3 adhérents</p></div></div>
+      <div class="float-card fc2"><span class="fc-icon">🧘</span><div><strong>Séance Yoga</strong><p>Demain 08h00</p></div></div>
+      <div class="float-card fc3"><span class="fc-icon">💪</span><div><strong>Progression</strong><p>+12% ce mois</p></div></div>
+    </div>
+  </section>
+
+  <main class="main">
+
+    <section class="tab-section active" id="tab-dashboard">
+      <div class="section-header">
+        <h2 class="section-title">Tableau de bord</h2>
+        <button class="btn-primary" onclick="openTab('members')">+ Nouvel adhérent</button>
+      </div>
+      <div class="dashboard-grid">
+        <div class="dash-card"><div class="dash-card-icon" style="background:#e8f5e0">🌱</div><div><p class="dash-card-label">Adhérents actifs</p><p class="dash-card-value" id="dash-count">0</p></div></div>
+        <div class="dash-card"><div class="dash-card-icon" style="background:#fff3e0">📩</div><div><p class="dash-card-label">Envois ce mois</p><p class="dash-card-value" id="dash-sent">0</p></div></div>
+        <div class="dash-card"><div class="dash-card-icon" style="background:#fce4ec">🎯</div><div><p class="dash-card-label">Objectifs suivis</p><p class="dash-card-value" id="dash-goals">0</p></div></div>
+        <div class="dash-card"><div class="dash-card-icon" style="background:#e3f2fd">⭐</div><div><p class="dash-card-label">Satisfaction moy.</p><p class="dash-card-value">4.9/5</p></div></div>
+      </div>
+      <div class="recent-members">
+        <h3 class="subsection-title">Derniers adhérents</h3>
+        <div id="recent-list" class="member-cards-grid">
+          <div class="empty-state"><span class="empty-icon">🌿</span><p>Aucun adhérent pour le moment.</p><button class="btn-secondary" onclick="openTab('members')">Ajouter un adhérent</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-section" id="tab-members">
+      <div class="section-header"><h2 class="section-title">Gestion des adhérents</h2></div>
+      <div class="two-col">
+        <div class="card form-card">
+          <h3 class="card-title">Nouvel adhérent</h3>
+          <form id="member-form" class="form">
+            <div class="form-row">
+              <div class="form-group"><label>Prénom</label><input type="text" id="f-prenom" placeholder="Marie" required /></div>
+              <div class="form-group"><label>Nom</label><input type="text" id="f-nom" placeholder="Dupont" required /></div>
+            </div>
+            <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="marie@email.com" required /></div>
+            <div class="form-group"><label>Téléphone</label><input type="tel" id="f-tel" placeholder="06 00 00 00 00" /></div>
+            <div class="form-row">
+              <div class="form-group"><label>Âge</label><input type="number" id="f-age" placeholder="30" min="16" max="99" /></div>
+              <div class="form-group"><label>Objectif principal</label><select id="f-objectif"><option value="perte_poids">Perte de poids</option><option value="prise_masse">Prise de masse</option><option value="endurance">Endurance</option><option value="bien_etre">Bien-être général</option><option value="flexibilite">Flexibilité</option><option value="nutrition">Rééquilibrage alimentaire</option></select></div>
+            </div>
+            <div class="form-group"><label>Régime alimentaire</label><select id="f-regime"><option value="omnivore">Omnivore</option><option value="vegetarien">Végétarien</option><option value="vegan">Vegan</option><option value="sans_gluten">Sans gluten</option><option value="sans_lactose">Sans lactose</option></select></div>
+            <div class="form-group"><label>Notes / Allergies</label><textarea id="f-notes" placeholder="Informations importantes, restrictions médicales…" rows="3"></textarea></div>
+            <button type="submit" class="btn-primary btn-full">Ajouter l'adhérent</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Tous les adhérents <span class="badge" id="member-badge">0</span></h3>
+          <div id="member-list" class="member-list"><div class="empty-state small"><span class="empty-icon">🌿</span><p>Ajoutez votre premier adhérent.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-section" id="tab-nutrition">
+      <div class="section-header"><h2 class="section-title">Programmes Nutrition</h2></div>
+      <div class="nutrition-grid">
+        <div class="nutrition-card"><div class="nutri-header" style="background: linear-gradient(135deg,#2d5a27,#4a7c59)"><span class="nutri-icon">🥗</span><h3>Programme Équilibre</h3><p>Rééquilibrage alimentaire doux</p></div><div class="nutri-body"><ul class="nutri-list"><li>🌅 <strong>Matin :</strong> Porridge avoine + fruits frais + thé vert</li><li>☀️ <strong>Midi :</strong> Protéines maigres + légumes vapeur + féculents</li><li>🍎 <strong>Collation :</strong> Fruits secs + yaourt nature</li><li>🌙 <strong>Soir :</strong> Soupe légumes + œufs ou poisson + salade</li></ul><div class="nutri-tips"><span class="tip">💧 2L d'eau / jour</span><span class="tip">⏰ Manger lentement</span><span class="tip">🚫 Sucres raffinés limités</span></div><button class="btn-outline" onclick="selectPlan('equilibre')">Sélectionner ce plan</button></div></div>
+        <div class="nutrition-card"><div class="nutri-header" style="background: linear-gradient(135deg,#7b3f00,#c47a3a)"><span class="nutri-icon">💪</span><h3>Programme Performance</h3><p>Prise de masse et énergie</p></div><div class="nutri-body"><ul class="nutri-list"><li>🌅 <strong>Matin :</strong> Omelette 3 œufs + pain complet + banane</li><li>🏋️ <strong>Pré-séance :</strong> Banane + amandes (30 min avant)</li><li>☀️ <strong>Midi :</strong> 200g poulet/saumon + riz complet + brocolis</li><li>🍗 <strong>Post-séance :</strong> Protéines + glucides rapides</li><li>🌙 <strong>Soir :</strong> Viande maigre + légumes + patate douce</li></ul><div class="nutri-tips"><span class="tip">💧 3L d'eau / jour</span><span class="tip">🥩 1.8g protéines/kg</span><span class="tip">⚡ 5 repas / jour</span></div><button class="btn-outline" onclick="selectPlan('performance')">Sélectionner ce plan</button></div></div>
+        <div class="nutrition-card"><div class="nutri-header" style="background: linear-gradient(135deg,#1a3a5c,#2e6da4)"><span class="nutri-icon">🌿</span><h3>Programme Détox</h3><p>Légèreté et revitalisation</p></div><div class="nutri-body"><ul class="nutri-list"><li>🌅 <strong>Matin :</strong> Eau citronnée + smoothie vert + graines de chia</li><li>☀️ <strong>Midi :</strong> Grande salade composée + légumineuses + avocat</li><li>🍵 <strong>Collation :</strong> Tisane détox + poignée de noix</li><li>🌙 <strong>Soir :</strong> Bouillon de légumes + crudités + houmous</li></ul><div class="nutri-tips"><span class="tip">🍋 Eau citronnée le matin</span><span class="tip">🥦 80% végétal</span><span class="tip">🚫 Alcool, café limités</span></div><button class="btn-outline" onclick="selectPlan('detox')">Sélectionner ce plan</button></div></div>
+        <div class="nutrition-card"><div class="nutri-header" style="background: linear-gradient(135deg,#4a0080,#9b59b6)"><span class="nutri-icon">🏃</span><h3>Programme Perte de Poids</h3><p>Déficit calorique sain et durable</p></div><div class="nutri-body"><ul class="nutri-list"><li>🌅 <strong>Matin :</strong> Yaourt grec + baies + 1 tranche pain complet</li><li>☀️ <strong>Midi :</strong> Protéines maigres + légumes à volonté</li><li>🍓 <strong>Collation :</strong> Fruit + fromage blanc 0%</li><li>🌙 <strong>Soir :</strong> Omelette légumes ou poisson vapeur + salade</li></ul><div class="nutri-tips"><span class="tip">📉 -300 kcal / jour</span><span class="tip">🕕 Jeûne 12h la nuit</span><span class="tip">🥗 Assiette 50% légumes</span></div><button class="btn-outline" onclick="selectPlan('perte_poids')">Sélectionner ce plan</button></div></div>
+      </div>
+    </section>
+
+    <section class="tab-section" id="tab-conseils">
+      <div class="section-header"><h2 class="section-title">Conseils Bien-être</h2></div>
+      <div class="conseils-grid">
+        <div class="conseil-card" style="--accent:#4a7c59"><div class="conseil-cat">🧘 Récupération</div><h4>Le sommeil, pilier de la performance</h4><p>7 à 9 heures de sommeil par nuit favorisent la récupération musculaire, réduisent le cortisol et améliorent la concentration. Chambre fraîche à 18°C, pas d'écran 1h avant.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+        <div class="conseil-card" style="--accent:#c9a84c"><div class="conseil-cat">💧 Hydratation</div><h4>L'eau, votre meilleure alliée</h4><p>Une déshydratation de 2% réduit les performances de 20%. Buvez 250ml dès le réveil, puis régulièrement toute la journée. Avant l'effort : 500ml, pendant : 150ml toutes les 20 min.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+        <div class="conseil-card" style="--accent:#e57373"><div class="conseil-cat">🧠 Mental</div><h4>La pleine conscience au quotidien</h4><p>5 minutes de méditation par jour suffisent. Pratiquez la respiration 4-7-8 (inspirez 4s, retenez 7s, expirez 8s) pour un calme immédiat.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+        <div class="conseil-card" style="--accent:#42a5f5"><div class="conseil-cat">🚶 Activité douce</div><h4>Marchez, tout simplement</h4><p>8 000 à 10 000 pas par jour améliorent la santé cardiovasculaire et stabilisent la glycémie. La régularité prime sur l'intensité.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+        <div class="conseil-card" style="--accent:#ab47bc"><div class="conseil-cat">🌞 Rythme de vie</div><h4>Synchronisez-vous avec votre horloge biologique</h4><p>Exposez-vous à la lumière naturelle dès le réveil. Évitez les repas lourds après 20h. Planifiez vos efforts en fin de matinée.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+        <div class="conseil-card" style="--accent:#ff8f00"><div class="conseil-cat">🔥 Motivation</div><h4>Fixez des objectifs SMART</h4><p>Un objectif Spécifique, Mesurable, Atteignable, Réaliste et Temporel est 3× plus souvent atteint. Célébrez chaque petite victoire.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+        <div class="conseil-card" style="--accent:#26a69a"><div class="conseil-cat">🥦 Anti-inflammatoire</div><h4>Manger anti-inflammatoire</h4><p>Intégrez oméga-3 (saumon, noix), curcuma, gingembre et légumes colorés à chaque repas. Réduisez les sucres raffinés et graisses saturées.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+        <div class="conseil-card" style="--accent:#ef5350"><div class="conseil-cat">🤸 Mobilité</div><h4>5 minutes de stretching le matin</h4><p>Cat-vache pour le dos, ouverture des hanches, étirement ischio-jambiers. Ces rituels améliorent la posture et ancrent dans votre corps dès le réveil.</p><button class="tip-copy" onclick="copyTip(this)">Copier le conseil</button></div>
+      </div>
+    </section>
+
+    <section class="tab-section" id="tab-envoyer">
+      <div class="section-header"><h2 class="section-title">Envoyer un programme</h2></div>
+      <div class="two-col-lg">
+        <div class="card">
+          <h3 class="card-title">Composer un message</h3>
+          <div class="form">
+            <div class="form-group"><label>Destinataire</label><select id="send-member"><option value="">— Sélectionner un adhérent —</option></select></div>
+            <div class="form-group"><label>Plan nutrition à inclure</label><div class="plan-selector" id="plan-selector"><label class="plan-chip"><input type="checkbox" value="equilibre" /><span>🥗 Équilibre</span></label><label class="plan-chip"><input type="checkbox" value="performance" /><span>💪 Performance</span></label><label class="plan-chip"><input type="checkbox" value="detox" /><span>🌿 Détox</span></label><label class="plan-chip"><input type="checkbox" value="perte_poids" /><span>🏃 Perte de poids</span></label></div></div>
+            <div class="form-group"><label>Conseils à inclure</label><div class="plan-selector" id="tip-selector"><label class="plan-chip"><input type="checkbox" value="sommeil" /><span>🧘 Sommeil</span></label><label class="plan-chip"><input type="checkbox" value="hydratation" /><span>💧 Hydratation</span></label><label class="plan-chip"><input type="checkbox" value="mental" /><span>🧠 Mental</span></label><label class="plan-chip"><input type="checkbox" value="marche" /><span>🚶 Marche</span></label><label class="plan-chip"><input type="checkbox" value="rythme" /><span>🌞 Rythme</span></label><label class="plan-chip"><input type="checkbox" value="motivation" /><span>🔥 Motivation</span></label></div></div>
+            <div class="form-group"><label>Message personnalisé</label><textarea id="send-message" rows="5" placeholder="Bonjour [Prénom], voici votre programme…"></textarea></div>
+            <div class="btn-row"><button class="btn-secondary" onclick="previewMessage()">Aperçu</button><button class="btn-primary" onclick="sendMessage()">Envoyer le programme ✦</button></div>
+          </div>
+        </div>
+        <div class="card preview-card" id="preview-area">
+          <h3 class="card-title">Aperçu du message</h3>
+          <div id="preview-content" class="preview-content"><div class="empty-state small"><span class="empty-icon">📋</span><p>L'aperçu apparaîtra ici.</p></div></div>
+          <div id="copy-bar" class="copy-bar hidden"><button class="btn-outline" onclick="copyPreview()">📋 Copier tout</button><span id="copy-confirm" class="copy-confirm hidden">✓ Copié !</span></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:2rem">
+        <h3 class="card-title">Historique des envois</h3>
+        <div id="history-list" class="history-list"><div class="empty-state small"><span class="empty-icon">📬</span><p>Aucun envoi pour le moment.</p></div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <footer class="footer">
+    <p>CoachVital © 2025 — Fait avec ❤️ pour accompagner vos adhérents vers leur meilleur soi.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
